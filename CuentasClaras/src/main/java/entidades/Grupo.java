@@ -4,10 +4,13 @@ import java.util.List;
 
 public class Grupo {
 	private long id;
-	private String nombre; 
+	private String nombre;
+	private byte imagen;
+	
 	private CategoriaGrupo categoria; 
+	
 	private List<Gasto> gastos; 
-	private List<Usuario> usuarios;
+	private List<Usuario> integrantes;
 		
 	public long getId() {
 		return id;
@@ -28,18 +31,34 @@ public class Grupo {
 	public void setCategoria(CategoriaGrupo categoria) {
 		this.categoria = categoria;
 	}
+	public byte getImagen() {
+		return imagen;
+	}
 
-	public void agregarMiembro(Usuario usuario) {
+	public void setImagen(byte imagen) {
+		this.imagen = imagen;
+	}
+	
+	
+	
+	//metodos
+	public Grupo  altaGrupo (String nombre, List<Usuario> integrantes, CategoriaGrupo categoria) {
+		return null;
+	}
+	
+	public void agregarIntegrante(Usuario usuario) {
 		
 	}
 	
-	public void cargarGasto(Gasto gasto) {
-		
+	public Gasto cargarGasto(Gasto gasto) {
+		return null;
 	}
-	public List<Usuario> verMiembros() {
-		return usuarios;
+	public List<Usuario> verIntegrantes() {
+		return integrantes;
 	}
 	public List<Gasto> verGastos() {
 		return gastos;
 	}
+
+
 }
