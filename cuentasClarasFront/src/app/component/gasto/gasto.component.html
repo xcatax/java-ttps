@@ -1,0 +1,90 @@
+<div class="container border p-4">
+<div *ngIf="modoEdicion; else modoCreacion">
+  <h2>Editar Gasto</h2>
+  <form (ngSubmit)="onSubmit()" class="form-group">
+    <label>
+      Nombre:
+      <input type="text" name="nombre" [(ngModel)]="nuevoGasto.nombre"  class="form-control">
+    </label>
+    <br>
+    <label>
+      Monto:
+      <input type="text" name="monto" [(ngModel)]="nuevoGasto.monto"  class="form-control">
+    </label>
+    <label>
+      Fecha:
+      <input type="date" name="fecha" [(ngModel)]="nuevoGasto.fecha"  class="form-control">
+    </label>
+    <label>
+      Categoría:
+      <select *ngIf="categorias && categorias.length > 0" [(ngModel)]="nuevoGasto.categoria" name="categoriaId"  class="form-select">
+        <option value="" disabled selected>Selecciona una categoría</option>
+        <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{ categoria.nombre }}</option>
+      </select>
+    </label>
+    <label>
+      Usuario:
+      <select *ngIf="usuarios && usuarios.length > 0" [(ngModel)]="nuevoGasto.usuarioOrigen" name="usuarioOrigenId"  class="form-select">
+        <option value="" disabled selected>Selecciona un usuario</option>
+        <option *ngFor="let usuario of usuarios" [ngValue]="usuario">{{ usuario.nombreUsuario }}</option>
+      </select>
+    </label>
+
+    <label>
+      Grupo:
+      <select *ngIf="grupos && grupos.length > 0" [(ngModel)]="grupoActualizado" name="grupoId"  class="form-select">
+        <option value="" disabled selected>Selecciona un grupo</option>
+        <option *ngFor="let grupo of grupos" [ngValue]="grupo">{{ grupo.nombre }}</option>
+      </select>
+    </label>
+
+    <button type="submit" class="btn btn-success mt-2">Actualizar Gasto</button>
+  </form>  
+</div>
+
+<ng-template #modoCreacion>
+  <!-- Formulario de creación -->
+  <h2>Crear Nuevo Gasto</h2>
+  <!-- Aquí incluye el formulario de creación con los campos correspondientes -->
+
+<form (ngSubmit)="onSubmit()" class="form-group">
+  <label>
+    Descripción:
+    <input type="text" name="nombre" [(ngModel)]="nuevoGasto.nombre" class="form-control">
+  </label>
+  <br>
+  <label>
+    Monto:
+    <input type="text" name="monto" [(ngModel)]="nuevoGasto.monto" class="form-control">
+  </label>
+  <label>
+    Fecha:
+    <input type="date" name="fecha" [(ngModel)]="nuevoGasto.fecha" class="form-control">
+  </label>
+  <label>
+    Categoría:
+    <select *ngIf="categorias && categorias.length > 0" [(ngModel)]="nuevoGasto.categoria" name="categoriaId" class="form-select">
+      <option value="" disabled selected>Selecciona una categoría</option>
+      <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{ categoria.nombre }}</option>
+    </select>
+  </label>
+  <label>
+    Usuario:
+    <select *ngIf="usuarios && usuarios.length > 0" [(ngModel)]="nuevoGasto.usuarioOrigen" name="usuarioOrigenId" class="form-select">
+      <option value="" disabled selected>Selecciona un usuario</option>
+      <option *ngFor="let usuario of usuarios" [ngValue]="usuario">{{ usuario.nombreUsuario }}</option>
+    </select>
+  </label>
+
+  <label>
+    Grupo:
+    <select *ngIf="grupos && grupos.length > 0" [(ngModel)]="grupoSeleccionado" name="grupoId" class="form-select" aria-label="Default select example">
+      <option value="" disabled selected>Selecciona un grupo</option>
+      <option *ngFor="let grupo of grupos" [ngValue]="grupo">{{ grupo.nombre }}</option>
+    </select>
+  </label>
+
+  <button type="submit" class="btn btn-success mt-2">Crear Gasto</button>
+</form>
+</ng-template>
+</div>

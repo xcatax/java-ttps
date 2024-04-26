@@ -1,0 +1,45 @@
+<div class="container border p-4">
+  <h1>Gastos de grupo</h1>
+
+  <h2>Seleccionar Grupo</h2>
+  <form>
+    <div class="form-group">
+      <label for="grupo">Grupo:</label>
+      <select *ngIf="grupos && grupos.length > 0" [(ngModel)]="grupoSeleccionado" name="grupo" class="form-select">
+        <option value="" disabled selected>Selecciona un grupo</option>
+        <option *ngFor="let grupo of grupos" [ngValue]="grupo">{{ grupo.nombre }}</option>
+      </select>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Seleccionar</button>
+  </form>
+
+  <!-- Mostrar la lista de nombres de gastos solo si hay gastos -->
+  <div *ngIf="gastos && gastos.length > 0" class="mt-4">
+    <h2>Listado de Nombres de Gastos</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre del Gasto</th>
+          <th>Monto</th>
+          <th>Fecha</th>
+          <th>Categoría</th>
+          <th>Usuario Origen</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let gasto of gastos">
+          <td>{{ gasto.nombre }}</td>
+          <td>{{ gasto.monto }}</td>
+          <td>{{ gasto.fecha | date:'short' }}</td>
+          <td>{{ gasto.categoria.nombre }}</td>
+          <td>{{ gasto.usuarioOrigen.nombreUsuario }}</td>
+          <td>
+            <!-- Botón para llamar a la función editarGasto -->
+            <button type="button" class="btn btn-secondary" (click)="editarGasto(gasto)">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container border p-4">
+  <div *ngIf="gasto" class="mt-4">
+    <h2>Editar Gasto</h2>
+    
+    <div class="form-group">
+      <label for="nombre">Nombre del Gasto:</label>
+      <input type="text" id="nombre" [(ngModel)]="gasto.nombre" class="form-control">
+    </div>
+    
+    <div class="form-group">
+      <label for="monto">Monto:</label>
+      <input type="number" id="monto" [(ngModel)]="gasto.monto" class="form-control">
+    </div>
+    
+    <div class="form-group">
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" [(ngModel)]="gasto.fecha" class="form-control">
+    </div>
+    
+    <div class="form-group">
+      <label for="categoria">Categoría:</label>
+      <select *ngIf="categorias && categorias.length > 0" [(ngModel)]="gasto.categoria.nombre" name="categoriaNombre" class="form-select">
+        <option value="" disabled selected>Selecciona una categoría</option>
+        <option *ngFor="let categoria of categorias" [ngValue]="categoria.nombre">{{ categoria.nombre }}</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="usuarioOrigen">Usuario:</label>
+      <select *ngIf="usuarios && usuarios.length > 0" [(ngModel)]="gasto.usuarioOrigen" name="usuarioOrigenId" class="form-select">
+        <option value="" disabled selected>Selecciona un usuario</option>
+        <option *ngFor="let usuario of usuarios" [ngValue]="usuario">{{ usuario.nombreUsuario }}</option>
+      </select>
+    </div>
+    
+    <button type="button" (click)="editarGasto()" class="btn btn-primary">Guardar Cambios</button>
+  </div>
+</div>
